@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/bottomMenu_AccountMessege"
+        android:title="费用信息"/>
+    <item
+        android:id="@+id/bottomMenu_PayPlan"
+        android:title="消费计划"/>
+    <item
+        android:id="@+id/bottomMenu_PayCharts"
+        android:title="消费图表"/>
+
+</menu>
