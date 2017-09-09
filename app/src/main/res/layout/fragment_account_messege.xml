@@ -41,18 +41,12 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/toolbar_account_messege"/>
 
-    <ScrollView
+
+    <include layout="@layout/fragment_account_messege_2"
+        android:id="@+id/fragment_account_messege_2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/fragment_account_messege_1">
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <include layout="@layout/fragment_account_messege_2"/>
-        </LinearLayout>
-    </ScrollView>
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fragment_account_messege_1"
+        android:layout_margin="15dp"/>
 
 </RelativeLayout>
