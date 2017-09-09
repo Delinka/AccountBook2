@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="最近支出"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:textSize="20sp"
+                />
+
+            <Button
+                android:id="@+id/button_addOutcome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="添加 >"
+                android:textSize="10sp"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                style="?attr/borderlessButtonStyle" />
+
+
+
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:id="@+id/layout_outcome"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </LinearLayout>
+
+                <include layout="@layout/layout_outcome_messege"/>
+                <include layout="@layout/layout_outcome_messege"/>
+                <include layout="@layout/layout_outcome_messege"/>
+                <include layout="@layout/layout_outcome_messege"/>
+                <include layout="@layout/layout_outcome_messege"/>
+                <include layout="@layout/layout_outcome_messege"/>
+                <include layout="@layout/layout_outcome_messege"/>
+                <include layout="@layout/layout_outcome_messege"/>
+                <include layout="@layout/layout_outcome_messege"/>
+            </LinearLayout>
+
+        </ScrollView>
+
+
+    </LinearLayout>
+</RelativeLayout>

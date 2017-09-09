@@ -51,9 +51,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="￥ 100.0"
+            android:text="￥ 10000.0"
             android:textSize="25sp"
-            android:layout_gravity="center"
+            android:layout_gravity="left"
             android:gravity="center"/>
 
     </LinearLayout>

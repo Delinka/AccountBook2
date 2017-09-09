@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="余额信息"
+            android:text="费用信息"
             android:textSize="20sp"
             android:textColor="#ffffff"
             />
@@ -41,12 +41,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/toolbar_account_messege"/>
 
-
-    <include layout="@layout/fragment_account_messege_2"
-        android:id="@+id/fragment_account_messege_2"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@id/fragment_account_messege_1"
-        android:layout_margin="15dp"/>
+        android:padding="15dp" >
+    </android.support.v4.view.ViewPager>
+
 
 </RelativeLayout>
