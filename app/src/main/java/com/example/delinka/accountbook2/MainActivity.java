@@ -24,11 +24,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public DrawerLayout drawerLayout;
     private Button nav_button;
     private BottomNavigationView bottomNavigationView;
+    private long exittime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setTitle("");
 
         Toolbar toolbar_account_msg = (Toolbar) findViewById(R.id.toolbar_account_messege);
         setSupportActionBar(toolbar_account_msg);
@@ -72,6 +74,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
 
+    }
+
+    @Override
+    public void onBackPressed(){
+        if(drawerLayout.isDrawerOpen(findViewById(R.id.navigationView))){
+            drawerLayout.closeDrawers();
+        } else {
+            if (System.currentTimeMillis() - exittime < 1000) {
+                super.onBackPressed();
+            } else {
+                Toast.makeText(MainActivity.this, "再按一次退出", Toast.LENGTH_SHORT).show();
+                exittime = System.currentTimeMillis();
+            }
+        }
     }
 
     private void replaceFragment(Fragment fragment){
