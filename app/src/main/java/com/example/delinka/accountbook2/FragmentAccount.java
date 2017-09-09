@@ -36,8 +36,8 @@ public class FragmentAccount extends Fragment {
         layout_outcome = Vinflater.inflate(R.layout.layout_outcome, null);
 
         viewList = new ArrayList<>();
-        viewList.add(layout_income);
         viewList.add(layout_outcome);
+        viewList.add(layout_income);
 
         PagerAdapter pagerAdapter = new PagerAdapter() {
             @Override

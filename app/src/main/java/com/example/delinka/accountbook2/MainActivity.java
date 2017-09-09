@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.security.PrivateKey;
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public DrawerLayout drawerLayout;
     private Button nav_button;
     private BottomNavigationView bottomNavigationView;
-
+    private Toolbar toolbar_account_msg;
     private long exittime = 0;
 
 
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         setTitle("");
 
-        Toolbar toolbar_account_msg = (Toolbar) findViewById(R.id.toolbar_account_messege);
+        toolbar_account_msg = (Toolbar) findViewById(R.id.toolbar_account_messege);
         setSupportActionBar(toolbar_account_msg);
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -85,8 +86,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 drawerLayout.openDrawer(GravityCompat.START);
                 break;
         }
-
     }
+
 
     @Override
     public void onBackPressed(){

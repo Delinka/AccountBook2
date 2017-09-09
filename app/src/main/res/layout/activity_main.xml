@@ -31,13 +31,16 @@
             android:layout_height="match_parent"
             android:layout_above="@id/bottomNavigationView">
 
-
-            <Button
-                android:id="@+id/nav_button"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"
-                android:layout_marginLeft="10dp"
-                android:text="Menu"/>
+                <Button
+                    android:id="@+id/nav_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_marginLeft="10dp"
+                    android:text="Menu"
+                    android:textColor="#fff"
+                    android:textSize="16sp"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"/>
         </FrameLayout>
 
     </RelativeLayout>

@@ -18,7 +18,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="最近收入"
+                android:text="最近支出"
+                android:textColor="#fff"
                 android:layout_marginTop="2dp"
                 android:layout_marginBottom="2dp"
                 android:textSize="20sp"
@@ -31,6 +32,7 @@
                 android:layout_weight="1"
                 android:gravity="right"
                 android:text="添加 >"
+                android:textColor="#fff"
                 android:textSize="10sp"
                 android:minWidth="0dp"
                 android:minHeight="0dp"
@@ -47,7 +49,9 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:showDividers="middle"
+                android:divider="#bdbdbd">
                 <LinearLayout
                     android:id="@+id/layout_outcome"
                     android:orientation="vertical"
