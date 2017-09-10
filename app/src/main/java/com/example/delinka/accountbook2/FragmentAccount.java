@@ -30,14 +30,6 @@ public class FragmentAccount extends Fragment{
     private ViewPager viewPager;
     private List<View> viewList;
 
-    private TextView textView_account_thismonth;
-    private float value_account_thismonth;
-    private TextView getTextView_account_total;
-    private float getValue_account_total;
-    private float temp;
-
-    Button button_add_outcome;
-    Button button_add_income;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -79,6 +71,5 @@ public class FragmentAccount extends Fragment{
 
         return view;
     }
-
 
 }
