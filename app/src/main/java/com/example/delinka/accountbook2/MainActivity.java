@@ -1,6 +1,7 @@
 package com.example.delinka.accountbook2;
 
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -43,7 +44,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private long exittime = 0;
 
     private FragmentAccount fragmentAccount;
-    private FragmentAccount Account;
     private FragementPayplan fragmentPayplan;
     private FragmentPaycharts fragmentPaycharts;
 
@@ -60,6 +60,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        loadData();
         setContentView(R.layout.activity_main);
         setTitle("");
         ClothStatusBar();
@@ -91,6 +92,39 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             }
         });
 
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+        resetAmount();
+    }
+
+    @Override
+    protected  void onDestroy(){
+        super.onDestroy();
+        saveData();
+    }
+
+    private void saveData() {
+        SharedPreferences.Editor editor = getSharedPreferences("data", MODE_PRIVATE).edit();
+        editor.putFloat("月余额", Value_account_thismonth);
+        editor.putFloat("总余额", Value_account_total);
+        editor.putFloat("伙食", Array_outcomeValue[0]);
+        editor.putFloat("约会", Array_outcomeValue[1]);
+        editor.putFloat("网购", Array_outcomeValue[2]);
+        editor.putFloat("其它", Array_outcomeValue[3]);
+        editor.apply();
+    }
+
+    private void loadData(){
+        SharedPreferences pref = getSharedPreferences("data", MODE_PRIVATE);
+        Value_account_thismonth = pref.getFloat("月余额", 0);
+        Value_account_total = pref.getFloat("总余额", 0);
+        Array_outcomeValue[0] = pref.getFloat("伙食", 0);
+        Array_outcomeValue[1] = pref.getFloat("约会", 0);
+        Array_outcomeValue[2] = pref.getFloat("网购", 0);
+        Array_outcomeValue[3] = pref.getFloat("其它", 0);
     }
 
     private void ClothStatusBar() {
@@ -133,6 +167,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
     }
 
+    public void resetAmount() {
+        textView_account_thismonth = (TextView) findViewById(R.id.textView_amount_thismonth);
+        textView_account_total = (TextView) findViewById(R.id.textView_amount_total);
+
+        textView_account_thismonth.setText("" + Value_account_thismonth);
+        textView_account_total.setText("" + Value_account_total);
+
+    }
+
     private void addIncome() {
         temp = 0;
         AlertDialog.Builder builder_income = new AlertDialog.Builder(MainActivity.this);
@@ -164,14 +207,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         builder_income.setCancelable(true);
         AlertDialog alertDialog = builder_income.create();
         alertDialog.show();
-    }
-
-    private void resetAmount() {
-        textView_account_thismonth = (TextView) findViewById(R.id.textView_amount_thismonth);
-        textView_account_total = (TextView) findViewById(R.id.textView_amount_total);
-
-        textView_account_thismonth.setText("" + Value_account_thismonth);
-        textView_account_total.setText("" + Value_account_total);
     }
 
     private void addOutcome() {

@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:menu="@menu/left_menu"
-        />
+        app:headerLayout="@layout/nav_header" />
 
     <RelativeLayout
         android:layout_width="match_parent"

@@ -2,11 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/item_1"
-            android:title="item_1"/>
+            android:id="@+id/item_remove_thismonth"
+            android:title="重置本月账本"/>
         <item
-            android:id="@+id/item_2"
-            android:title="item_2"/>
+            android:id="@+id/item_remove_totol"
+            android:title="删除并重置所有账本"/>
     </group>
 
 </menu>
