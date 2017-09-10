@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -69,9 +70,35 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         nav_button = (Button) findViewById(R.id.nav_button);
         nav_button.setOnClickListener(this);
 
+        NavigationView navigationView = (NavigationView) findViewById(R.id.navigationView);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener(){
+            @Override
+            public boolean onNavigationItemSelected(MenuItem item){
+                switch (item.getItemId()){
+                    case R.id.item_remove_thismonth:
+                        Value_account_thismonth = 0;
+                        resetAmount();
+                        break;
+                    case R.id.item_remove_totol:
+                        Value_account_thismonth = 0;
+                        Value_account_total = 0;
+                        resetAmount();
+                        break;
+                }
+                drawerLayout.closeDrawers();
+                Toast.makeText(MainActivity.this, "重置完成", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
+
         showAccount();
 
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
+        setBottomNavigationViewOnClick();
+
+    }
+
+    private void setBottomNavigationViewOnClick() {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -91,7 +118,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 return false;
             }
         });
-
     }
 
     @Override
