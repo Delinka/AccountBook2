@@ -35,7 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     public DrawerLayout drawerLayout;
     private Button nav_button;
@@ -110,15 +110,60 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    public void ClickAddButton(View v){
+    public void MyOnClick(View v){
         switch (v.getId()){
             case R.id.button_addOutcome:
                 addOutcome();
                 break;
             case R.id.button_addIncome:
-                textView_account_thismonth.setText("99");
+                addIncome();
+                break;
+            case R.id.layout_thismonth:
+                Toast.makeText(MainActivity.this, "「查看本月支出记录列表」还未实现", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.layout_total:
+                Toast.makeText(MainActivity.this, "「查看所有支出记录列表」还未实现", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.title_month:
+                Toast.makeText(MainActivity.this, "「显示月历式选择菜单」还未实现", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.outcome_msg:
+                Toast.makeText(MainActivity.this, "「查看记录详情」还未实现", Toast.LENGTH_SHORT).show();
                 break;
         }
+    }
+
+    private void addIncome() {
+        temp = 0;
+        AlertDialog.Builder builder_income = new AlertDialog.Builder(MainActivity.this);
+        final LinearLayout layout_amount_edittext = (LinearLayout) getLayoutInflater().inflate(R.layout.layout_amount_edittext, null);
+
+        builder_income.setView(layout_amount_edittext);
+        builder_income.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                editText_input = (EditText)  layout_amount_edittext.findViewById(R.id.editText_input);
+                String text = editText_input.getText().toString();
+                if(text != null && !text.equals("")) {
+                    temp = Float.parseFloat(text);
+                }
+                Value_account_thismonth = Value_account_thismonth + temp;
+                Value_account_total = Value_account_total + temp;
+                resetAmount();
+                Toast.makeText(MainActivity.this, "添加收入项目完成", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        builder_income.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        builder_income.setCancelable(true);
+        AlertDialog alertDialog = builder_income.create();
+        alertDialog.show();
     }
 
     private void resetAmount() {

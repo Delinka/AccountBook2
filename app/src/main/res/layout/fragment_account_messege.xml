@@ -29,7 +29,8 @@
             android:layout_alignBottom="@id/title_account_messege"
             android:text="2017年9月"
             android:textSize="16sp"
-            android:textColor="#ffffff"/>
+            android:textColor="#ffffff"
+            android:onClick="MyOnClick"/>
     </RelativeLayout>
 
 

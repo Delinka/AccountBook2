@@ -39,7 +39,7 @@
                 android:minWidth="0dp"
                 android:minHeight="0dp"
                 style="?attr/borderlessButtonStyle"
-                android:onClick="ClickAddButton"/>
+                android:onClick="MyOnClick"/>
 
 
 

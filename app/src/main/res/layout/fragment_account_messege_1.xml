@@ -14,10 +14,12 @@
         android:layout_marginBottom="15dp">
 
         <LinearLayout
+            android:id="@+id/layout_thismonth"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:onClick="MyOnClick">
 
             <TextView
                 android:layout_width="match_parent"
@@ -46,10 +48,12 @@
             android:layout_marginTop="30dp"
             android:layout_marginBottom="20dp"/>
         <LinearLayout
+            android:id="@+id/layout_total"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:onClick="MyOnClick">
 
             <TextView
                 android:layout_width="match_parent"
