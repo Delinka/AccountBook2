@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_outcome"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -11,7 +12,9 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp">
 
 
             <TextView
@@ -36,7 +39,8 @@
                 android:textSize="10sp"
                 android:minWidth="0dp"
                 android:minHeight="0dp"
-                style="?attr/borderlessButtonStyle" />
+                style="?attr/borderlessButtonStyle"
+                android:onClick="ClickAddButton"/>
 
 
 
@@ -44,21 +48,17 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp">
 
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:showDividers="middle"
-                android:divider="#bdbdbd">
-                <LinearLayout
-                    android:id="@+id/layout_outcome"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                android:divider="#fff">
 
-                </LinearLayout>
 
                 <include layout="@layout/layout_outcome_messege"/>
                 <include layout="@layout/layout_outcome_messege"/>

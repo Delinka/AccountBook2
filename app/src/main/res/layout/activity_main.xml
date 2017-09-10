@@ -16,20 +16,25 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/app_main_background3"
+        android:fitsSystemWindows="true">
 
         <android.support.design.widget.BottomNavigationView
             android:id="@+id/bottomNavigationView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            app:menu="@menu/bottom_menu"/>
+            app:menu="@menu/bottom_menu"
+            app:itemTextColor="@drawable/bottom_navigation_selector"
+            android:background="@drawable/app_navigationbotton_background2"/>
 
         <FrameLayout
             android:id="@+id/frame_Layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@id/bottomNavigationView">
+            android:layout_above="@id/bottomNavigationView"
+            android:layout_marginTop="20dp">
 
                 <Button
                     android:id="@+id/nav_button"
@@ -40,7 +45,8 @@
                     android:textColor="#fff"
                     android:textSize="16sp"
                     android:minWidth="0dp"
-                    android:minHeight="0dp"/>
+                    android:minHeight="0dp"
+                    style="?attr/borderlessButtonStyle"/>
         </FrameLayout>
 
     </RelativeLayout>

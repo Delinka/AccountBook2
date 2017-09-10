@@ -1,5 +1,6 @@
 package com.example.delinka.accountbook2;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
@@ -11,6 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -20,11 +24,20 @@ import java.util.List;
  * Created by Delinka on 2017/9/8.
  */
 
-public class FragmentAccount extends Fragment {
+public class FragmentAccount extends Fragment{
 
     private View layout_income, layout_outcome;
     private ViewPager viewPager;
     private List<View> viewList;
+
+    private TextView textView_account_thismonth;
+    private float value_account_thismonth;
+    private TextView getTextView_account_total;
+    private float getValue_account_total;
+    private float temp;
+
+    Button button_add_outcome;
+    Button button_add_income;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -66,4 +79,6 @@ public class FragmentAccount extends Fragment {
 
         return view;
     }
+
+
 }

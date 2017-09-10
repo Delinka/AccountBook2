@@ -2,30 +2,25 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#2b2b2b">
+    android:layout_height="match_parent">
 
-    <android.support.v7.widget.Toolbar
+    <RelativeLayout
         android:id="@+id/toolbar_payplan"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
+        android:layout_height="?attr/actionBarSize" >
 
 
         <TextView
             android:id="@+id/title_payplan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
+            android:layout_centerInParent="true"
             android:text="消费计划"
             android:textSize="20sp"
             android:textColor="#ffffff"
             />
 
-    </android.support.v7.widget.Toolbar>
+    </RelativeLayout>
 
     <lecho.lib.hellocharts.view.PieChartView
         android:id="@+id/pieCharts"

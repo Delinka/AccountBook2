@@ -2,24 +2,20 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#2b2b2b">
+    android:layout_height="match_parent">
 
-    <android.support.v7.widget.Toolbar
+    <RelativeLayout
         android:id="@+id/toolbar_account_messege"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+        android:fitsSystemWindows="true">
 
 
         <TextView
             android:id="@+id/title_account_messege"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
+            android:layout_centerInParent="true"
             android:text="费用信息"
             android:textSize="20sp"
             android:textColor="#ffffff"
@@ -29,11 +25,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
-            android:layout_gravity="right"
+            android:layout_alignParentRight="true"
+            android:layout_alignBottom="@id/title_account_messege"
             android:text="2017年9月"
             android:textSize="16sp"
             android:textColor="#ffffff"/>
-    </android.support.v7.widget.Toolbar>
+    </RelativeLayout>
 
 
     <include layout="@layout/fragment_account_messege_1"
@@ -46,9 +43,7 @@
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/fragment_account_messege_1"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp">
+        android:layout_below="@id/fragment_account_messege_1">
     </android.support.v4.view.ViewPager>
 
 

@@ -1,5 +1,7 @@
 package com.example.delinka.accountbook2;
 
+import android.graphics.Color;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -34,10 +36,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public DrawerLayout drawerLayout;
     private Button nav_button;
     private BottomNavigationView bottomNavigationView;
-    private Toolbar toolbar_account_msg;
     private long exittime = 0;
 
-
+    TextView textView_account_thismonth;
 
 
     @Override
@@ -45,9 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("");
-
-        toolbar_account_msg = (Toolbar) findViewById(R.id.toolbar_account_messege);
-        setSupportActionBar(toolbar_account_msg);
+        ClothStatusBar();
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         nav_button = (Button) findViewById(R.id.nav_button);
@@ -79,12 +78,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    private void ClothStatusBar() {
+        if(Build.VERSION.SDK_INT >= 21){
+            View decorView = getWindow().getDecorView();
+            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+        }
+    }
+
     @Override
     public void onClick(View v){
         switch (v.getId()){
             case R.id.nav_button:
                 drawerLayout.openDrawer(GravityCompat.START);
                 break;
+        }
+    }
+
+    public void ClickAddButton(View v){
+        switch (v.getId()){
+            case R.id.button_addOutcome:
+                textView_account_thismonth = (TextView) findViewById(R.id.textView_amount_thismonth);
+                textView_account_thismonth.setText("99.9");
+                break;
+            case R.id.button_addIncome:
+                Toast.makeText(MainActivity.this, "222", Toast.LENGTH_SHORT).show();
         }
     }
 
