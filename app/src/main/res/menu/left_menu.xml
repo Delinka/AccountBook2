@@ -7,6 +7,9 @@
         <item
             android:id="@+id/item_remove_totol"
             android:title="删除并重置所有账本"/>
+        <item
+            android:id="@+id/item_exit"
+            android:title="退出"/>
     </group>
 
 </menu>

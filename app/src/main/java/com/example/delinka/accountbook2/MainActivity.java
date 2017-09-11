@@ -25,12 +25,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import lecho.lib.hellocharts.model.PieChartData;
+import lecho.lib.hellocharts.model.SliceValue;
+import lecho.lib.hellocharts.view.PieChartView;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     public DrawerLayout drawerLayout;
     private Button nav_button;
     private BottomNavigationView bottomNavigationView;
+    private NavigationView navigationView;
     private long exittime = 0;
 
     private FragmentAccount fragmentAccount;
@@ -45,16 +51,32 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private EditText editText_inputCost;
     private EditText editText_inputMsg;
     private String[] Array_outcomeType = {"伙食", "约会", "网购", "其它"};
+    private int[] colors = {
+            Color.parseColor("#7eed8b"),
+            Color.parseColor("#da70d6"),
+            Color.parseColor("#7ed6ed"),
+            Color.parseColor("#e7ed7e")}; //饼状图颜色
     private float[] Array_outcomeValue = {1, 1, 1, 1};
     private float temp;
 
-    public ArrayList<CostRecord> costRecordList = new ArrayList<>();
     private LinearLayout layout_messege;
     private CostRecord costRecord;
+
+    private PieChartView pieChartView;
+    private PieChartData pieChartData;
+    private boolean hasLabels = true; //是否在饼状图上显示标签
+    private boolean hasLabelsOutside = false; //是否在饼状图外显示标签
+    private boolean hasCenterCircle = true; //是否有中心空洞
+    private boolean hasCenterText1 = true; //是否显示中心标签1
+    private boolean hasCenterText2 = false; //是否显示中心标签2
+    private boolean isExploded = false; //是否呈爆炸式
+    private boolean hasLabelForSelected = false; //是否只在选择时显示标签
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        showPayplan();
+        showAccount();
         loadData();
         setContentView(R.layout.activity_main);
         setTitle("");
@@ -64,29 +86,78 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         nav_button = (Button) findViewById(R.id.nav_button);
         nav_button.setOnClickListener(this);
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.navigationView);
+        navigationView = (NavigationView) findViewById(R.id.navigationView);
+        setNavigationViewClick();
+
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
+        setBottomNavigationViewOnClick();
+
+    }
+
+    private void setNavigationViewClick() {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener(){
             @Override
             public boolean onNavigationItemSelected(MenuItem item){
                 switch (item.getItemId()){
                     case R.id.item_remove_thismonth:
                         removeThismonth();
+                        drawerLayout.closeDrawers();
+                        Toast.makeText(MainActivity.this, "重置完成", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.item_remove_totol:
                         removeTotal();
+                        drawerLayout.closeDrawers();
+                        Toast.makeText(MainActivity.this, "重置完成", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.item_exit:
+                        ActivityCollector.finishAllActivity();
                         break;
                 }
-                drawerLayout.closeDrawers();
-                Toast.makeText(MainActivity.this, "重置完成", Toast.LENGTH_SHORT).show();
                 return true;
             }
         });
+    }
 
-        showAccount();
+    private void initPieCharts(){
+        pieChartView = (PieChartView) findViewById(R.id.pieCharts);
+        ArrayList index = new ArrayList(); //存放支出类型中的非0值的下标
 
-        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
-        setBottomNavigationViewOnClick();
+        for(int i = 0; i < Array_outcomeValue.length; i++){
+            if(Array_outcomeValue[i] != 0)
+                index.add(i);
+        }
 
+        /**存放扇形数据的集合*/
+        List<SliceValue> values = new ArrayList<SliceValue>();
+        pieChartData = new PieChartData(values);
+        if(index.size() == 0){
+            SliceValue sliceValue = new SliceValue(1);
+            pieChartData.setCenterText1("没有花钱");
+            pieChartData.setCenterText1FontSize(18) ;
+            pieChartData.setCenterText1Color(Color.WHITE);
+            hasLabels = false;
+            values.add(sliceValue);
+        }
+        else{
+            for(int i = 0; i < index.size(); i++) {
+                int k = (int) index.get(i);
+                SliceValue sliceValue = new SliceValue(Array_outcomeValue[k], colors[k]);
+                sliceValue.setLabel(Array_outcomeType[k]);
+                values.add(sliceValue);
+                pieChartData.setCenterText1("已消费");
+                pieChartData.setCenterText1FontSize(18) ;
+                pieChartData.setCenterText1Color(Color.WHITE);
+                hasLabels = true;
+            }
+        }
+
+        pieChartData.setHasLabels(hasLabels);
+        pieChartData.setHasLabelsOutside(hasLabelsOutside);
+        pieChartData.setHasLabelsOnlyForSelected(hasLabelForSelected);
+        pieChartData.setHasCenterCircle(hasCenterCircle);
+
+        pieChartView.setPieChartData(pieChartData);
+        pieChartView.setAlpha(0.65f); //设置不透明度
     }
 
     private void removeTotal() {
@@ -94,12 +165,20 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         Value_account_total = 0;
         resetAmount();
         removeRecord();
+        for(int i = 0; i < Array_outcomeValue.length; i++){
+            Array_outcomeValue[i] = 0;
+        }
+        initPieCharts();
     }
 
     private void removeThismonth() {
         Value_account_thismonth = 0;
         resetAmount();
         removeRecord();
+        for(int i = 0; i < Array_outcomeValue.length; i++){
+            Array_outcomeValue[i] = 0;
+        }
+        initPieCharts();
 
     }
 
@@ -128,6 +207,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onStart(){
         super.onStart();
+        initPieCharts();
         resetAmount();
     }
 
@@ -233,8 +313,17 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 editText_inputMsg = (EditText) layout_amount_edittext.findViewById(R.id.editText_inputMsg);
 
                 String textCost = editText_inputCost.getText().toString();
-                if(textCost != null && !textCost.equals("")) {
-                    temp = Float.parseFloat(textCost);
+                if(textCost != null && !textCost.equals("")){
+                    try {
+                        temp = Float.parseFloat(textCost);
+                        if (temp == 0) {
+                            Toast.makeText(MainActivity.this, "无金额", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                    } catch (Exception e){
+                        Toast.makeText(MainActivity.this, "请输入正确金额", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                 }else{
                     Toast.makeText(MainActivity.this, "无金额", Toast.LENGTH_SHORT).show();
                     return;
@@ -301,8 +390,17 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
                 String textCost = editText_inputCost.getText().toString();
                 if(textCost != null && !textCost.equals("")){
-                    temp = Float.parseFloat(textCost);
-                } else{
+                    try {
+                        temp = Float.parseFloat(textCost);
+                        if (temp == 0) {
+                            Toast.makeText(MainActivity.this, "无金额", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                    } catch (Exception e){
+                        Toast.makeText(MainActivity.this, "请输入正确金额", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }else{
                     Toast.makeText(MainActivity.this, "无金额", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -321,6 +419,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 Array_outcomeValue[i] = Array_outcomeValue[i] + temp;
                 Toast.makeText(MainActivity.this, "添加支出项目完成", Toast.LENGTH_SHORT).show();
 
+                initPieCharts();
             }
         });
 
@@ -369,7 +468,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
                 String textCost = editText_inputCost.getText().toString();
                 if(textCost != null && !textCost.equals("")){
-                    temp = Float.parseFloat(textCost);
+                    try {
+                        temp = Float.parseFloat(textCost);
+                        if (temp == 0) {
+                            Toast.makeText(MainActivity.this, "无金额", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                    } catch (Exception e){
+                        Toast.makeText(MainActivity.this, "请输入正确金额", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                 }else{
                     Toast.makeText(MainActivity.this, "无金额", Toast.LENGTH_SHORT).show();
                     return;
