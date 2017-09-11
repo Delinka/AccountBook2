@@ -58,6 +58,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private float[] Array_outcomeValue = {1, 1, 1, 1};
     private float temp;
 
+    public ArrayList<CostRecord> costRecordList = new ArrayList<>();
+    private LinearLayout layout_messege;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -268,6 +271,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 }
                 Value_account_thismonth = Value_account_thismonth - temp;
                 Value_account_total = Value_account_total - temp;
+                CostRecord costRecord = new CostRecord();
+                costRecord.setCost("" + temp);
+                addOutcomeRecord(costRecord);
                 resetAmount();
                 Array_outcomeValue[i] = Array_outcomeValue[i] + temp;
                 Toast.makeText(MainActivity.this, "添加支出项目完成", Toast.LENGTH_SHORT).show();
@@ -287,6 +293,19 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         alertDialog.show();
     }
 
+    private void addOutcomeRecord(CostRecord costRecord) {
+        layout_messege = (LinearLayout) findViewById(R.id.layout_messege);
+        View view = LayoutInflater.from(this).inflate(R.layout.layout_outcome_messege, layout_messege, false);
+        TextView msg_date = (TextView) view.findViewById(R.id.msg_date);
+        TextView msg_type = (TextView) view.findViewById(R.id.msg_type);
+        TextView msg_msg = (TextView) view.findViewById(R.id.msg_msg);
+        TextView msg_cost = (TextView) view.findViewById(R.id.msg_cost);
+        msg_date.setText(costRecord.getDate());
+        msg_type.setText(costRecord.getType());
+        msg_msg.setText(costRecord.getMessege());
+        msg_cost.setText(costRecord.getCost());
+        layout_messege.addView(view);
+    }
 
 
     @Override
