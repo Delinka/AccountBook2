@@ -1,6 +1,7 @@
 package com.example.delinka.accountbook2;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
@@ -69,13 +70,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             public boolean onNavigationItemSelected(MenuItem item){
                 switch (item.getItemId()){
                     case R.id.item_remove_thismonth:
-                        Value_account_thismonth = 0;
-                        resetAmount();
+                        removeThismonth();
                         break;
                     case R.id.item_remove_totol:
-                        Value_account_thismonth = 0;
-                        Value_account_total = 0;
-                        resetAmount();
+                        removeTotal();
                         break;
                 }
                 drawerLayout.closeDrawers();
@@ -88,6 +86,20 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
         setBottomNavigationViewOnClick();
+
+    }
+
+    private void removeTotal() {
+        Value_account_thismonth = 0;
+        Value_account_total = 0;
+        resetAmount();
+        removeRecord();
+    }
+
+    private void removeThismonth() {
+        Value_account_thismonth = 0;
+        resetAmount();
+        removeRecord();
 
     }
 
@@ -184,9 +196,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 Toast.makeText(MainActivity.this, "「显示月历式选择菜单」还未实现", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.outcome_msg:
-                Toast.makeText(MainActivity.this, "「查看记录详情」还未实现", Toast.LENGTH_SHORT).show();
+                openDetailActivity();
                 break;
         }
+    }
+
+    private void openDetailActivity() {
+        Intent intent = new Intent(MainActivity.this, CostDetailActivity.class);
+
+        startActivity(intent);
+
     }
 
     public void resetAmount() {
@@ -216,6 +235,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 String textCost = editText_inputCost.getText().toString();
                 if(textCost != null && !textCost.equals("")) {
                     temp = Float.parseFloat(textCost);
+                }else{
+                    Toast.makeText(MainActivity.this, "无金额", Toast.LENGTH_SHORT).show();
+                    return;
                 }
                 Value_account_thismonth = Value_account_thismonth + temp;
                 Value_account_total = Value_account_total + temp;
@@ -280,6 +302,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 String textCost = editText_inputCost.getText().toString();
                 if(textCost != null && !textCost.equals("")){
                     temp = Float.parseFloat(textCost);
+                } else{
+                    Toast.makeText(MainActivity.this, "无金额", Toast.LENGTH_SHORT).show();
+                    return;
                 }
                 Value_account_thismonth = Value_account_thismonth - temp;
                 Value_account_total = Value_account_total - temp;
@@ -345,7 +370,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 String textCost = editText_inputCost.getText().toString();
                 if(textCost != null && !textCost.equals("")){
                     temp = Float.parseFloat(textCost);
+                }else{
+                    Toast.makeText(MainActivity.this, "无金额", Toast.LENGTH_SHORT).show();
+                    return;
                 }
+
                 Value_account_thismonth = Value_account_thismonth - temp;
                 Value_account_total = Value_account_total - temp;
                 costRecord.setCost("￥ " + temp);
@@ -387,6 +416,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         msg_type.setText(costRecord.getType());
         msg_msg.setText(costRecord.getMessege());
         msg_cost.setText(costRecord.getCost());
+
         layout_messege.addView(view);
     }
 
@@ -401,6 +431,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         msg_type.setText(costRecord.getType());
         msg_msg.setText(costRecord.getMessege());
         msg_cost.setText(costRecord.getCost());
+
         layout_messege.addView(view);
     }
 
@@ -416,6 +447,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         msg_msg.setText(costRecord.getMessege());
         msg_cost.setText(costRecord.getCost());
         layout_messege.addView(view);
+    }
+
+    private void removeRecord(){
+        layout_messege = (LinearLayout) findViewById(R.id.layout_messege_income);
+        layout_messege.removeAllViews();
+
+        layout_messege = (LinearLayout) findViewById(R.id.layout_messege_outcome);
+        layout_messege.removeAllViews();
     }
 
 
