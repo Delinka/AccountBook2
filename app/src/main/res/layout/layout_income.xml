@@ -52,22 +52,13 @@
             android:layout_marginRight="15dp">
 
             <LinearLayout
+                android:id="@+id/layout_messege_income"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:showDividers="middle"
                 android:divider="#fff">
 
-
-                <include layout="@layout/layout_outcome_messege"/>
-                <include layout="@layout/layout_outcome_messege"/>
-                <include layout="@layout/layout_outcome_messege"/>
-                <include layout="@layout/layout_outcome_messege"/>
-                <include layout="@layout/layout_outcome_messege"/>
-                <include layout="@layout/layout_outcome_messege"/>
-                <include layout="@layout/layout_outcome_messege"/>
-                <include layout="@layout/layout_outcome_messege"/>
-                <include layout="@layout/layout_outcome_messege"/>
             </LinearLayout>
 
         </ScrollView>

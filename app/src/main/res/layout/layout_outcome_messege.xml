@@ -48,7 +48,9 @@
             android:text="备注"
             android:textColor="#fff"
             android:gravity="center"
-            android:textSize="20sp"/>
+            android:textSize="20sp"
+            android:maxLines="1"
+            android:ellipsize="end"/>
     </LinearLayout>
 
     <LinearLayout

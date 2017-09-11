@@ -53,7 +53,7 @@
             android:layout_marginRight="15dp">
 
             <LinearLayout
-                android:id="@+id/layout_messege"
+                android:id="@+id/layout_messege_outcome"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -36,7 +36,8 @@
                 android:textSize="10sp"
                 android:minWidth="0dp"
                 android:minHeight="0dp"
-                style="?attr/borderlessButtonStyle" />
+                style="?attr/borderlessButtonStyle"
+                android:onClick="MyOnClick"/>
 
 
 
@@ -47,26 +48,11 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
+                android:id="@+id/layout_messege_plan"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <LinearLayout
-                    android:id="@+id/layout_outcome"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
 
-                </LinearLayout>
-
-                <include layout="@layout/layout_outcome_messege"/>
-                <include layout="@layout/layout_outcome_messege"/>
-                <include layout="@layout/layout_outcome_messege"/>
-                <include layout="@layout/layout_outcome_messege"/>
-                <include layout="@layout/layout_outcome_messege"/>
-                <include layout="@layout/layout_outcome_messege"/>
-                <include layout="@layout/layout_outcome_messege"/>
-                <include layout="@layout/layout_outcome_messege"/>
-                <include layout="@layout/layout_outcome_messege"/>
             </LinearLayout>
 
         </ScrollView>
