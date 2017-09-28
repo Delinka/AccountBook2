@@ -83,8 +83,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         ClothStatusBar();
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        nav_button = (Button) findViewById(R.id.nav_button);
-        nav_button.setOnClickListener(this);
 
         navigationView = (NavigationView) findViewById(R.id.navigationView);
         setNavigationViewClick();
@@ -460,7 +458,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         costRecord = new CostRecord();
         costRecord.setType(Array_outcomeType[i]);
         AlertDialog.Builder builder_outcome2 = new AlertDialog.Builder(MainActivity.this);
-        final LinearLayout layout_amount_edittext = (LinearLayout) getLayoutInflater().inflate(R.layout.layout_income_edittext, null);
+        final LinearLayout layout_amount_edittext = (LinearLayout) getLayoutInflater().inflate(R.layout.layout_outcome_edittext, null);
+
+        TextView textView_SelectedType_outcome = (TextView) layout_amount_edittext.findViewById(R.id.textView_SelectedType_outcome);
+        textView_SelectedType_outcome.setText(Array_outcomeType[i]);
 
         builder_outcome2.setView(layout_amount_edittext);
         builder_outcome2.setPositiveButton("确定", new DialogInterface.OnClickListener() {

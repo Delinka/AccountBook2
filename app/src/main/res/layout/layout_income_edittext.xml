@@ -24,6 +24,7 @@
             android:layout_weight="1"
             android:layout_marginRight="30dp"
             android:hint="0"
+            android:inputType="number"
             />
     </LinearLayout>
 
