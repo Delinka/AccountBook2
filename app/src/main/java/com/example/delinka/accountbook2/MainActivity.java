@@ -301,7 +301,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         temp = 0;
         costRecord = new CostRecord();
         AlertDialog.Builder builder_income = new AlertDialog.Builder(MainActivity.this);
-        final LinearLayout layout_amount_edittext = (LinearLayout) getLayoutInflater().inflate(R.layout.layout_amount_edittext, null);
+        final LinearLayout layout_amount_edittext = (LinearLayout) getLayoutInflater().inflate(R.layout.layout_income_edittext, null);
 
         builder_income.setView(layout_amount_edittext);
         builder_income.setPositiveButton("确定", new DialogInterface.OnClickListener() {
@@ -309,8 +309,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             public void onClick(DialogInterface dialog, int which) {
                 costRecord.setType("生活费");
 
-                editText_inputCost = (EditText)  layout_amount_edittext.findViewById(R.id.editText_inputCost);
-                editText_inputMsg = (EditText) layout_amount_edittext.findViewById(R.id.editText_inputMsg);
+                editText_inputCost = (EditText)  layout_amount_edittext.findViewById(R.id.editText_inputCost_income);
+                editText_inputMsg = (EditText) layout_amount_edittext.findViewById(R.id.editText_inputMsg_income);
 
                 String textCost = editText_inputCost.getText().toString();
                 if(textCost != null && !textCost.equals("")){
@@ -378,15 +378,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         temp = 0;
         costRecord = new CostRecord();
         costRecord.setType(Array_outcomeType[i]);
-        AlertDialog.Builder builder_outcome2 = new AlertDialog.Builder(MainActivity.this);
-        final LinearLayout layout_amount_edittext = (LinearLayout) getLayoutInflater().inflate(R.layout.layout_amount_edittext, null);
+        final AlertDialog.Builder builder_outcome2 = new AlertDialog.Builder(MainActivity.this);
+        final LinearLayout layout_amount_edittext = (LinearLayout) getLayoutInflater().inflate(R.layout.layout_outcome_edittext, null);
+
+        TextView textView_SelectedType_outcome = (TextView) layout_amount_edittext.findViewById(R.id.textView_SelectedType_outcome);
+        textView_SelectedType_outcome.setText(Array_outcomeType[i]);
 
         builder_outcome2.setView(layout_amount_edittext);
         builder_outcome2.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                editText_inputCost = (EditText) layout_amount_edittext.findViewById(R.id.editText_inputCost);
-                editText_inputMsg = (EditText) layout_amount_edittext.findViewById(R.id.editText_inputMsg);
+                editText_inputCost = (EditText) layout_amount_edittext.findViewById(R.id.editText_inputCost_income);
+                editText_inputMsg = (EditText) layout_amount_edittext.findViewById(R.id.editText_inputMsg_income);
 
                 String textCost = editText_inputCost.getText().toString();
                 if(textCost != null && !textCost.equals("")){
@@ -457,14 +460,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         costRecord = new CostRecord();
         costRecord.setType(Array_outcomeType[i]);
         AlertDialog.Builder builder_outcome2 = new AlertDialog.Builder(MainActivity.this);
-        final LinearLayout layout_amount_edittext = (LinearLayout) getLayoutInflater().inflate(R.layout.layout_amount_edittext, null);
+        final LinearLayout layout_amount_edittext = (LinearLayout) getLayoutInflater().inflate(R.layout.layout_income_edittext, null);
 
         builder_outcome2.setView(layout_amount_edittext);
         builder_outcome2.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                editText_inputCost = (EditText) layout_amount_edittext.findViewById(R.id.editText_inputCost);
-                editText_inputMsg = (EditText) layout_amount_edittext.findViewById(R.id.editText_inputMsg);
+                editText_inputCost = (EditText) layout_amount_edittext.findViewById(R.id.editText_inputCost_income);
+                editText_inputMsg = (EditText) layout_amount_edittext.findViewById(R.id.editText_inputMsg_income);
 
                 String textCost = editText_inputCost.getText().toString();
                 if(textCost != null && !textCost.equals("")){

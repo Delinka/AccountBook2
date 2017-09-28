@@ -10,7 +10,7 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/textView_inputCost"
+            android:id="@+id/textView_inputCost_income"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
@@ -18,7 +18,7 @@
             android:textSize="15sp"
             />
         <EditText
-            android:id="@+id/editText_inputCost"
+            android:id="@+id/editText_inputCost_income"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -33,7 +33,7 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/textView_inputMsg"
+            android:id="@+id/textView_inputMsg_income"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
@@ -41,7 +41,7 @@
             android:textSize="15sp"
             />
         <EditText
-            android:id="@+id/editText_inputMsg"
+            android:id="@+id/editText_inputMsg_income"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
